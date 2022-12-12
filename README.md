@@ -49,7 +49,7 @@ Then, create a file `transfer_input.json` indicating the parameters of the trans
             "recursive": true
         }
     ],
-    "notify_on_succeeded": false,
+    "notify_on_succeeded": true,
     "notify_on_failed": true,
     "notify_on_inactive": true,
     "verify_checksum": true
@@ -58,10 +58,13 @@ Then, create a file `transfer_input.json` indicating the parameters of the trans
 
 where
 
-- `ENDPOINT1` is the source endpoint UUID, NeSI Wellington DTN UUID is `cc45cfe3-21ae-4e31-bad4-5b3e7d6a2ca1`,
+- `ENDPOINT1` is the source endpoint UUID,
 - `ENDPOINT2` is the destination UUID, e.g. your personal endpoint UUID,
-- `SOURCE_FOLDER` is the path of the source folder in the source endpoint, e.g. `/~/globus/my_test_folder`,
-- `DESTINATION_FOLDER` is the path of the destination folder in the destination endpoint, data will be copied **into** this folder.
+- `SOURCE_FOLDER` is the path of the source folder in the source endpoint,
+- `DESTINATION_FOLDER` is the path of the destination folder in the destination endpoint.
+
+*Note: You should probably use a guest collection as source endpoint UUID instead of the NeSI Wellington DTN UUID.
+The advantage is that you won't have to enter your login for the DTN in the Globus website before transfers.*
 
 Next, start the transfer using
 
@@ -75,4 +78,15 @@ Follow the indicated url to allow the transfer action.
 
 ![](auth.png)
 
-Authentication token are cached in the file `~/.globus_automate_tokens.json`.
+*Note: Authentication token are cached in the file `~/.globus_automate_tokens.json`.*
+
+The `globus-automate action run` will return a json fragment.
+The first line contains the ACTION_ID which will be usefule to interact with the transfer.
+
+For example, to query the status of the transfer, use:
+
+```
+globus-automate action status --action-url https://actions.globus.org/transfer/transfer ACTION_ID
+```
+
+You can also see and interact with the transfer actions from the Globus website at https://app.globus.org/activity.
