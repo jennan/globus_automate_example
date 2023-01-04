@@ -3,7 +3,40 @@
 This repository provides instructions to run [Globus Automate Client](https://globus-automate-client.readthedocs.io) to transfer data from NeSI to another Globus endpoint.
 
 
-## Installation
+## Configure Globus
+
+You need to follow these instructions only once.
+
+Log in https://app.globus.org/:
+
+- use your in institution credentials if available in the list (e.g. Victoria University of Wellington)
+- or sign in with Google if you have a Google account,
+- or sign in using ORCID iD,
+- or create a Globus ID.
+
+Then, if you are planning to transfer to a workstation or laptop, install a personal endpoint:
+
+- Install Globus Connect Personal (Mac/Windows/Linux version) from https://app.globus.org/file-manager/gcp.
+- A *Private Mapped Collection* is created as part of the installation of the personal endpoint (installer will ask to log in globus for that).
+- Once created, this *Private Mapped Collection* will be accessible in https://app.globus.org/collections?scope=administered-by-me.
+  There you can find the UUI of this endpoint, which will be needed to configure the transfer.
+- On your machine, go to the Globus Personal Endpoint settings and make sure to configure the *Private Mapped Collection* to only the access folder(s) you want to share (and give it/them write access).
+
+Also make sure to have activated the NeSI endpoint in the Globus web UI (see [NeSI support page](https://support.nesi.org.nz/hc/en-gb/articles/4405630948495)).
+
+Finally, we recommend to initiate transfer from a *guest collection* instead of using directly NeSI Wellington DTN V5 for transfers.
+The guest collection will not require an authentication for every transfer, which is very convenient for automation.
+
+- Select the NeSI Wellington DTN V5 in https://app.globus.org/collections.
+- Then click on “Open in File Manager”.
+  You may then need to log in NeSI DTN to see the files.
+- Then find the root folder of your guest collection.
+- And create a guest collection using the “Share” button and then “Add Guest Collection”.
+- Then it will be listed in https://app.globus.org/collections?scope=administered-by-me.
+  Click on it to get its UUID.
+
+
+## Installation on Mahuika
 
 Install the client in a virtual environment:
 
