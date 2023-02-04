@@ -1,4 +1,4 @@
-# Globus automate test
+# Globus automate example
 
 This repository provides instructions to run [Globus Automate Client](https://globus-automate-client.readthedocs.io) to transfer data from NeSI to another Globus endpoint.
 
